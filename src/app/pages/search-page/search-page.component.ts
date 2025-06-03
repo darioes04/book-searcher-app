@@ -1,15 +1,17 @@
+import { TopBarComponent } from './top-bar/top-bar.component';
 import { Component, inject, signal } from '@angular/core';
-import { TopBarComponent } from '../../components/top-bar/top-bar.component';
-import { BookService } from '../../services/book.service';
+
+import { BookService } from '../../books/services/book.service';
 import { BookResponse } from '../../interfaces/book-raw-response';
 import { parseResponsetoBookArray } from '../../data-parsing';
 import { Book } from '../../interfaces/book-interface';
-import SearchBarComponent from './components/search-bar/search-bar/search-bar.component';
+import SearchBarComponent from './search-bar/search-bar.component';
+import { BookCardComponent } from "./book-card/book-card.component";
 
 @Component({
   selector: 'app-root',
   templateUrl: './search-page.component.html',
-  imports: [TopBarComponent, SearchBarComponent],
+  imports: [TopBarComponent, SearchBarComponent, BookCardComponent, BookCardComponent],
 })
 export default class SearchPageComponent {
 

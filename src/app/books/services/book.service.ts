@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { BookResponse } from '../interfaces/book-raw-response';
+import { BookResponse } from '../../interfaces/book-raw-response';
 
 const api_key = 'AIzaSyADPgVvGIoQeEG9LXTZv2jUuzQqaMRDjuM';
 const url = 'https://www.googleapis.com/books/v1';
