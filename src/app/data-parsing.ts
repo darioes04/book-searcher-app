@@ -1,10 +1,12 @@
+import { BookById } from './interfaces/book-by-id-interface';
 import { Book } from './interfaces/book-interface';
 import { BookResponse, Item, VolumeInfo, IndustryIdentifier } from './interfaces/book-raw-response';
+import { BookItem } from './interfaces/book-response-id';
 
   export function parseResponseBooktoBook(response: Item): Book {
     return {
         id: response.id,
-        title: fixEncoding(response.volumeInfo.title),
+        title: truncate(fixEncoding(response.volumeInfo.title), 60),
         author: response.volumeInfo.authors?.map(fixEncoding).join(', ') || 'Autor desconocido',
         publisher: fixEncoding(response.volumeInfo.publisher),
         publishedDate: response.volumeInfo.publishedDate || '',
@@ -12,16 +14,45 @@ import { BookResponse, Item, VolumeInfo, IndustryIdentifier } from './interfaces
         pageNumber: response.volumeInfo.pageCount || 0,
         thumbnail: response.volumeInfo.imageLinks?.thumbnail || '',
         isbn:
-          response.volumeInfo.industryIdentifiers?.find(id => id.type === 'ISBN_13')?.identifier ||
-          response.volumeInfo.industryIdentifiers?.[0]?.identifier || ''
+          response.volumeInfo.industryIdentifiers?.find(id => id.type === 'ISBN_13')?.identifier || 'ISBN desconocido'
     };
   }
 
 
-  // Conversión de lista
-  export function parseResponsetoBookArray(responseBooks: Item[]): Book[] {
-    return responseBooks.map(parseResponseBooktoBook);
+  export function parseResponseBookByIdtoBook(response: BookItem): BookById{
+    return {
+      id: response.id,
+      title: (response.volumeInfo.title),
+      subtitle: response.volumeInfo.subtitle,
+      author: response.volumeInfo.authors?.map(fixEncoding).join(', ') || 'Autor desconocido',
+      publisher: fixEncoding(response.volumeInfo.publisher),
+      publishedDate: response.volumeInfo.publishedDate || '',
+      description: fixEncoding(response.volumeInfo.description),
+      pageNumber: response.volumeInfo.pageCount || 0,
+      thumbnail: response.volumeInfo.imageLinks?.thumbnail || '',
+      isbn:
+        response.volumeInfo.industryIdentifiers?.find(id => id.type === 'ISBN_13')?.identifier || 'ISBN desconocido',
+      buylink: response.saleInfo.buyLink    
+    }
   }
+
+  function truncate(text: string, maxLength: number): string {
+    return text.length > maxLength ? text.slice(0, maxLength - 1) + '…' : text;
+  }
+
+  // Conversión de lista
+  export function parseResponsetoBookArray(responseBooks: Item[]): Book[] { 
+    
+     return responseBooks
+      .filter(book =>
+        book.volumeInfo.title &&
+        book.volumeInfo.authors && book.volumeInfo.authors.length > 0 &&
+        book.volumeInfo.publishedDate &&
+        book.volumeInfo.pageCount
+      )
+      .map(parseResponseBooktoBook)
+  }
+  
 
     function fixEncoding(text: string = ''): string {
     return text

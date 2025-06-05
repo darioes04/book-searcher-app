@@ -1,5 +1,5 @@
 <div
-  class="w-80 h-50 bg-white rounded-2xl shadow-lg border border-gray-200 p-6 flex flex-col"
+  class="w-80 h-55 bg-white rounded-2xl shadow-lg border border-gray-200 p-6 flex flex-col"
 >
   <!-- Título e icono -->
   <div>
@@ -8,7 +8,7 @@
     >
       <span>{{ bookCard().title }}</span>
       <svg
-        class="w-5 h-5 text-gray-500 flex-shrink-0"
+        class="w-5 h-5 text-gray-500 flex-shrink-0 hover:text-gray-700 cursor-pointer"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="currentColor"
@@ -23,9 +23,9 @@
   </div>
 
   <!-- ISBN -->
-  <p class="text-gray-700 mt-2">
+  <!-- <p class="text-gray-700 mt-2">
     <span class="font-medium">ISBN:</span> {{ bookCard().isbn }}
-  </p>
+  </p> -->
 
   <!-- Fecha y páginas pegadas abajo -->
   <div class="flex justify-between text-xs text-gray-500 mt-auto pt-1">

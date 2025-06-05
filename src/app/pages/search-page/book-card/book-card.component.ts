@@ -1,5 +1,10 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
 import { Book } from '../../../interfaces/book-interface';
+import { BookService } from '../../../books/services/book.service';
+import { BookById } from '../../../interfaces/book-by-id-interface';
+import { parseResponseBookByIdtoBook } from '../../../data-parsing';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'book-card',
@@ -8,10 +13,30 @@ import { Book } from '../../../interfaces/book-interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BookCardComponent {
-onMoreInfo(arg0: any) {
-throw new Error('Method not implemented.');
-}
+
+  constructor(private router: Router) {}
+
 
   bookCard = input.required<Book>();
+
+  bookDataById = signal<BookById>;
+
+  bookService = inject(BookService);
+
+  onMoreInfo(id: string) {
+    this.bookService.showBookById(id).subscribe(item => {
+      this.router.navigate(['/search', id]);
+      console.log(parseResponseBookByIdtoBook(item))
+      
+    })
+  }
+
+    
+ 
+
+
+
+   // window.open(`https://books.google.com/ebooks?id=${id}&dq=holmes&as_brr=4&source=webstore_bookcard`)
+  
 
  }

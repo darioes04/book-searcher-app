@@ -9,7 +9,7 @@ import SearchBarComponent from './search-bar/search-bar.component';
 import { BookCardComponent } from "./book-card/book-card.component";
 
 @Component({
-  selector: 'app-root',
+  selector: 'search-page-component',
   templateUrl: './search-page.component.html',
   imports: [TopBarComponent, SearchBarComponent, BookCardComponent, BookCardComponent],
 })
@@ -22,9 +22,13 @@ export default class SearchPageComponent {
   getSearchedBook(query: string) {
     if (query != '') {
       this.bookService.showBooks(query).subscribe((data) => {
-        return this.bookList.set(parseResponsetoBookArray(data.items));
+        this.bookList.set(parseResponsetoBookArray(data.items));
+        console.log(this.bookList());
+        return this.bookList;
+       
       });
-    } else {
+    } 
+    else {
       this.bookList.set([]);
     }
   }
