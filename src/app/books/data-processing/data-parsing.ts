@@ -1,7 +1,8 @@
-import { BookById } from './interfaces/book-by-id-interface';
-import { Book } from './interfaces/book-interface';
-import { BookResponse, Item, VolumeInfo, IndustryIdentifier } from './interfaces/book-raw-response';
-import { BookItem } from './interfaces/book-response-id';
+import { BookById } from "../interfaces/book-by-id-interface";
+import { Book } from "../interfaces/book-interface";
+import { Item } from "../interfaces/book-raw-response";
+import { BookItem } from "../interfaces/book-response-id";
+
 
   export function parseResponseBooktoBook(response: Item): Book {
     return {

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Book } from '../../interfaces/book-interface';
 
@@ -10,11 +10,6 @@ import { Book } from '../../interfaces/book-interface';
 })
 export default class InfoPageComponent {
 
-  book: Book;
-
-  constructor(private router: Router) {
-    const nav = this.router.getCurrentNavigation();
-    this.book = nav?.extras.state?.['book'];
-    console.log('Libro recibido:', this.book);
-  }
+  router = inject(Router);
+  book = this.router.getCurrentNavigation()?.extras.state?.['book'] as Book;
 }

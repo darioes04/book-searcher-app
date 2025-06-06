@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, input, Output, signal } from '@angular/core';
 import { Book } from '../../../interfaces/book-interface';
-import { BookService } from '../../../books/services/book.service';
+
 import { BookById } from '../../../interfaces/book-by-id-interface';
-import { parseResponseBookByIdtoBook } from '../../../data-parsing';
+
 import { Router } from '@angular/router';
 
 
@@ -14,22 +14,25 @@ import { Router } from '@angular/router';
 })
 export class BookCardComponent {
 
-  constructor(private router: Router) {}
+
+  @Output() bookId = new EventEmitter<string>();
 
 
   bookCard = input.required<Book>();
 
   bookDataById = signal<BookById>;
 
-  bookService = inject(BookService);
+
 
  
   onMoreInfo(id: string) {
-    this.bookService.showBookById(id).subscribe(item => {
+    this.bookId.emit(id);
+  } 
+
+   /* this.bookService.showBookById(id).subscribe(item => {
       const parsedItem = parseResponseBookByIdtoBook(item);
       this.router.navigate(['/search', id], { state: { book: parsedItem } });
-    });
-  } 
+    }); */
 
     
 

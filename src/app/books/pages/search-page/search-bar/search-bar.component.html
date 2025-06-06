@@ -1,0 +1,48 @@
+<span class="flex items-center gap-2">
+  <label class="input w-xl flex items-center gap-2">
+    <!-- Lupa izquierda -->
+    <svg
+      class="h-[1em] opacity-50"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <g
+        stroke-linejoin="round"
+        stroke-linecap="round"
+        stroke-width="4"
+        fill="none"
+        stroke="currentColor"
+      >
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.3-4.3"></path>
+      </g>
+    </svg>
+
+    <!-- Campo de búsqueda -->
+    <input
+      type="search"
+      class="grow"
+      placeholder="Buscar libro por título"
+      autofocus
+      #txtSearch
+      (keyup.enter)="onSearchBook(txtSearch.value)"
+    />
+
+    <!-- Teclas -->
+    <kbd class="kbd kbd-sm">⌘</kbd>
+    <kbd class="kbd kbd-sm">K</kbd>
+  </label>
+
+  <!-- Lupa derecha -->
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="w-8 h-8 opacity-60 cursor-pointer"
+    viewBox="0 0 256 256"
+    (click)="onSearchBook(txtSearch.value)"
+  >
+    <path
+      fill="currentColor"
+      d="m228.24 219.76l-51.38-51.38a86.15 86.15 0 1 0-8.48 8.48l51.38 51.38a6 6 0 0 0 8.48-8.48M38 112a74 74 0 1 1 74 74a74.09 74.09 0 0 1-74-74"
+    />
+  </svg>
+</span>

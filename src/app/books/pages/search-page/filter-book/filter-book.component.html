@@ -39,7 +39,7 @@
         placeholder="Nombre del autor"
         class="input input-sm input-bordered w-full"
         #txtAuthor
-        (keyup.enter)="onSearchByAuthor(txtAuthor.value)"
+        (input)="onSearchByAuthor(txtAuthor.value)"
       />
     </div>
 
@@ -51,8 +51,8 @@
         type="text"
         placeholder="Nombre de la editorial"
         class="input input-sm input-bordered w-full"
-        #txtAuthor
-        (keyup.enter)="onSearchByPublisher(txtAuthor.value)"
+        #txtPublisher
+        (input)="onSearchByPublisher(txtPublisher.value)"
       />
     </div>
   </ul>
