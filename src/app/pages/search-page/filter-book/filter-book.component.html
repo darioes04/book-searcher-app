@@ -1,0 +1,59 @@
+<div class="dropdown dropdown-bottom dropdown-end">
+  <div tabindex="0" role="button" class="btn m-1">
+    <span>Filtrar</span>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="none"
+        stroke="currentColor"
+        stroke-dasharray="56"
+        stroke-dashoffset="56"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M5 4h14l-5 6.5v9.5l-4 -4v-5.5Z"
+      >
+        <animate
+          fill="freeze"
+          attributeName="stroke-dashoffset"
+          dur="0.6s"
+          values="56;0"
+        />
+      </path>
+    </svg>
+  </div>
+  <ul
+    tabindex="0"
+    class="dropdown-content menu bg-base-100 rounded-box z-10 w-60 p-4 shadow"
+  >
+    <div>
+      <label class="text-sm font-semibold text-gray-600 mb-1 ml-2"
+        >Filtrar por autor</label
+      >
+      <input
+        type="text"
+        placeholder="Nombre del autor"
+        class="input input-sm input-bordered w-full"
+        #txtAuthor
+        (keyup.enter)="onSearchByAuthor(txtAuthor.value)"
+      />
+    </div>
+
+    <div class="mt-3">
+      <label class="text-sm font-semibold text-gray-600 mb-1"
+        >Filtrar por editorial</label
+      >
+      <input
+        type="text"
+        placeholder="Nombre de la editorial"
+        class="input input-sm input-bordered w-full"
+        #txtAuthor
+        (keyup.enter)="onSearchByPublisher(txtAuthor.value)"
+      />
+    </div>
+  </ul>
+</div>

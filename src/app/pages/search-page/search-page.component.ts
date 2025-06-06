@@ -7,11 +7,12 @@ import { parseResponsetoBookArray } from '../../data-parsing';
 import { Book } from '../../interfaces/book-interface';
 import SearchBarComponent from './search-bar/search-bar.component';
 import { BookCardComponent } from "./book-card/book-card.component";
+import { FilterBookComponent } from "./filter-book/filter-book.component";
 
 @Component({
   selector: 'search-page-component',
   templateUrl: './search-page.component.html',
-  imports: [TopBarComponent, SearchBarComponent, BookCardComponent, BookCardComponent],
+  imports: [TopBarComponent, SearchBarComponent, BookCardComponent, BookCardComponent, FilterBookComponent],
 })
   export default class SearchPageComponent {
 
