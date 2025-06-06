@@ -23,13 +23,15 @@ export class BookCardComponent {
 
   bookService = inject(BookService);
 
+ 
   onMoreInfo(id: string) {
     this.bookService.showBookById(id).subscribe(item => {
-      this.router.navigate(['/search', id]);
-      console.log(parseResponseBookByIdtoBook(item))
-      
-    })
-  }
+      const parsedItem = parseResponseBookByIdtoBook(item);
+      this.router.navigate(['/search', id], { state: { book: parsedItem } });
+    });
+  } 
+
+    
 
     
  

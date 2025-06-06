@@ -1,5 +1,5 @@
 import { TopBarComponent } from './top-bar/top-bar.component';
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, effect } from '@angular/core';
 
 import { BookService } from '../../books/services/book.service';
 import { BookResponse } from '../../interfaces/book-raw-response';
@@ -13,11 +13,28 @@ import { BookCardComponent } from "./book-card/book-card.component";
   templateUrl: './search-page.component.html',
   imports: [TopBarComponent, SearchBarComponent, BookCardComponent, BookCardComponent],
 })
-export default class SearchPageComponent {
+  export default class SearchPageComponent {
 
-  bookService = inject(BookService);
-  bookListResponse = signal<BookResponse[]>([]);
-  bookList = signal<Book[]>([]);
+    bookService = inject(BookService);
+    bookListResponse = signal<BookResponse[]>([]);
+
+ 
+    bookList = signal<Book[]>([]);
+
+
+   
+  constructor() {
+    // Cargar desde localStorage
+    const saved = localStorage.getItem('bookList');
+    if (saved) {
+      this.bookList.set(JSON.parse(saved));
+    }
+
+    // Guardar cada vez que bookList cambia
+    effect(() => {
+      localStorage.setItem('bookList', JSON.stringify(this.bookList()));
+    });
+  }
 
   getSearchedBook(query: string) {
     if (query != '') {

@@ -1,1 +1,29 @@
-<h1>HOLAAAAAA MUNDO :)</h1>
+<div class="bg-white rounded-xl shadow-md mt-10 p-6 space-y-3 border border-gray-200 max-w-xl mx-auto">
+  <h2 class="text-2xl font-bold text-gray-800">{{ book.title }}</h2>
+
+  <p [innerHTML]="book.description" class="text-gray-700 italic"></p>
+
+  <div class="grid grid-cols-2 gap-x-4 gap-y-2 text-sm text-gray-700 pt-4">
+    <div class="col-span-2">
+      <span class="font-semibold">Autor: </span>
+      <span>{{ book.author }}</span>
+    </div>
+    <div>
+      <span class="font-semibold">ISBN: </span>
+      <span>{{ book.isbn }}</span>
+    </div>
+    <div>
+      <span class="font-semibold">Páginas: </span>
+      <span>{{ book.pageNumber }}</span>
+    </div>
+    <div>
+      <span class="font-semibold">Publicado: </span>
+      <span>{{ book.publishedDate }}</span>
+    </div>
+    <div>
+      <span class="font-semibold">Editorial: </span>
+      <span>{{ book.publisher }}</span>
+    </div>
+    
+  </div>
+</div>
