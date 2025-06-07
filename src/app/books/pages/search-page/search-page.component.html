@@ -1,11 +1,13 @@
 <top-bar></top-bar>
 
-<div class="flex justify-center items-center gap-4">
-  <search-bar (query)="getSearchedBook($event)"></search-bar>
-  <filter-book
-    (bookAuthor)="filteredAuthor=$event"
-    (bookPublisher)="filteredPublisher=$event"
-  ></filter-book>
+<div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
+  <div class="flex flex-col gap-2 sm:flex-row justify-center items-center sm:gap-6 md:gap-10">
+    <search-bar (query)="getSearchedBook($event)"></search-bar>
+    <filter-book
+      (bookAuthor)="filteredAuthor=$event"
+      (bookPublisher)="filteredPublisher=$event"
+    ></filter-book>
+  </div>
 </div>
 
 <div class="mx-auto max-w-7xl px-6 pb-16 pt-4">
