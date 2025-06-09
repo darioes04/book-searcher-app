@@ -17,6 +17,7 @@
       type="search"
       class="grow w-full"
       placeholder="Buscar libro por título"
+      [value]="searchValue"
       autofocus
       #txtSearch
       (keyup.enter)="onSearchBook(txtSearch.value)"
