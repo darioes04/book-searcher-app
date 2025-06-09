@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BookItem } from '../interfaces/book-response-id';
 import { BookResponse } from '../interfaces/book-raw-response';
+import { catchError, of, tap } from 'rxjs';
 
 
 const api_key = 'AIzaSyADPgVvGIoQeEG9LXTZv2jUuzQqaMRDjuM';
@@ -29,12 +30,23 @@ export class BookService {
     else{
       finalQuery=`intitle:${query}`
     }
-    return this.http.get<BookResponse>(`${url}/volumes?`, {
-        params: {
-          q: finalQuery,
-          key: api_key
-        }
+     return this.http.get<BookResponse>(`${url}/volumes`, {
+      params: {
+        q: finalQuery,
+        key: api_key
       }
+    }).pipe(
+      tap(response => {
+        if (!response.items || response.items.length === 0) {
+          console.warn('No books found for the query');
+        } else {
+          console.log(`Found ${response.items.length} books`);
+        }
+      }),
+      catchError(error => {
+        console.error('Error fetching books', error);
+        return of({ items: [], totalItems: 0 } as unknown as BookResponse); // evita romper el flujo
+      })
     );
   }
 

@@ -39,7 +39,7 @@
         placeholder="Nombre del autor"
         class="input input-sm input-bordered w-full"
         #txtAuthor
-        (input)="onSearchByAuthor(txtAuthor.value)"
+        (input)="bookAuthor.emit(txtAuthor.value)"
       />
     </div>
 
@@ -52,7 +52,7 @@
         placeholder="Nombre de la editorial"
         class="input input-sm input-bordered w-full"
         #txtPublisher
-        (input)="onSearchByPublisher(txtPublisher.value)"
+        (input)="bookPublisher.emit(txtPublisher.value)"
       />
     </div>
   </ul>

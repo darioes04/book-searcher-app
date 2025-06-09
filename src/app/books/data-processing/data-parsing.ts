@@ -44,7 +44,6 @@
     // Conversión de lista
     export function parseResponsetoBookArray(responseBooks: Item[]): Book[] { 
 
-      console.log({responseBooks});
 
       return responseBooks
         .filter(book =>

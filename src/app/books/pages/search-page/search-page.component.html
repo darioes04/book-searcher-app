@@ -10,12 +10,20 @@
 
 <div class="mx-auto max-w-7xl px-6 pb-16 pt-4">
   <div class="flex flex-wrap justify-center gap-8">
-    @for (book of bookList(); track book.id) {
-        <book-card
-          [bookCard]="book"
-          (bookId)="getSearchedBookById($event)"        
-        > </book-card>
+    @if(noResults){
+      <no-books-found></no-books-found>
     }
+    @else {
+      @for (book of bookList(); track book.id) {
+      <book-card
+        [bookCard]="book"
+        (bookId)="getSearchedBookById($event)"        
+      > </book-card>
+      }
+    }
+   
   </div>
 </div>
+
+
 

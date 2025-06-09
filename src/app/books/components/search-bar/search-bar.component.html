@@ -20,7 +20,7 @@
       [value]="searchValue"
       autofocus
       #txtSearch
-      (keyup.enter)="onSearchBook(txtSearch.value)"
+      (keyup.enter)="query.emit(txtSearch.value)"
     />
 
     <!-- Teclas -->
@@ -33,7 +33,7 @@
     xmlns="http://www.w3.org/2000/svg"
     class="w-8 h-8 opacity-60 cursor-pointer"
     viewBox="0 0 256 256"
-    (click)="onSearchBook(txtSearch.value)"
+    (click)="query.emit(txtSearch.value)"
   >
     <path
       fill="currentColor"
