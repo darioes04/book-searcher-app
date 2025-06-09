@@ -1,4 +1,4 @@
-import { TopBarComponent } from './top-bar/top-bar.component';
+import { TopBarComponent } from '../../components/top-bar/top-bar.component';
 import { Component, inject, signal, effect } from '@angular/core';
 
 
@@ -43,8 +43,6 @@ import { parseResponseBookByIdtoBook, parseResponsetoBookArray } from '../../dat
     }
 
     getSearchedBook(query: string) {
-
-      
         this.bookService.showBooks(query,this.filteredAuthor, this.filteredPublisher).subscribe((data) => {
           this.bookList.set(parseResponsetoBookArray(data.items));
           console.log(this.bookList());
