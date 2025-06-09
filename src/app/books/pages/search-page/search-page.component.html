@@ -1,6 +1,6 @@
 <top-bar></top-bar>
 
-<div class="flex justify-center items-center gap-4">
+<div class="flex flex-col md:flex-row justify-center items-center gap-4">
   <search-bar (query)="getSearchedBook($event)"></search-bar>
   <filter-book
     (bookAuthor)="filteredAuthor=$event"

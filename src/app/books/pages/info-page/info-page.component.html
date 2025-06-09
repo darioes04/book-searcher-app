@@ -1,9 +1,21 @@
-<div class="bg-white rounded-xl shadow-md mt-10 p-6 space-y-3 border border-gray-200 max-w-xl mx-auto">
-  <h2 class="text-2xl font-bold text-gray-800">{{ book.title }}</h2>
+<div
+  class="bg-white rounded-xl shadow-md mt-10 p-6 border border-gray-200 max-w-xl mx-auto h-[80vh] flex flex-col"
+>
+  <!-- Título -->
+  <h2 class="text-2xl font-bold text-gray-800 mb-2">{{ book.title }}</h2>
 
-  <p [innerHTML]="book.description" class="text-gray-700 italic"></p>
+  <!-- Descripción scrolleable -->
+  <div
+    class="overflow-y-auto text-gray-700 italic pr-1 mb-4"
+    style="max-height: 60vh"
+  >
+    <p [innerHTML]="book.description"></p>
+  </div>
 
-  <div class="grid grid-cols-2 gap-x-4 gap-y-2 text-sm text-gray-700 pt-4">
+  <!-- Datos fijos al final -->
+  <div
+    class="grid grid-cols-2 gap-x-4 gap-y-2 text-sm text-gray-700 pt-4 mt-auto border-t border-gray-200"
+  >
     <div class="col-span-2">
       <span class="font-semibold">Autor: </span>
       <span>{{ book.author }}</span>
@@ -24,6 +36,5 @@
       <span class="font-semibold">Editorial: </span>
       <span>{{ book.publisher }}</span>
     </div>
-    
   </div>
 </div>
